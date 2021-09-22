@@ -15,6 +15,7 @@ export default function Main() {
     },
   ]);
   const [name, setName] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleOnChange = (ranges) => {
     const { selection } = ranges;
@@ -26,13 +27,25 @@ export default function Main() {
     setName(evt.target.value);
   }
 
-  function submitData() {
+  async function submitData() {
     const payload = {
       dates: state[0],
       name,
     };
 
-    console.log(payload);
+    setLoading(true);
+
+    const res = await fetch("http://localhost:8765/datas", {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    setLoading(false);
+
+    if (!res.ok) {
+      alert("Deu ruim, fala com Saulo.");
+    }
   }
 
   return (
@@ -86,8 +99,12 @@ export default function Main() {
           <b>LEMBRE:</b> Essas datas não estarão mais disponíveis pra viagem.
         </span>
 
-        <button onClick={submitData} className={styles.button}>
-          Enviar
+        <button
+          onClick={submitData}
+          disabled={loading}
+          className={styles.button}
+        >
+          {loading ? "Carregando" : "Enviar"}
         </button>
       </div>
     </div>
