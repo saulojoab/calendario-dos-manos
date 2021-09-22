@@ -2,11 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import Main from "./main";
+import { CalendarPage } from "./pages";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Main />
+    <Router>
+      <Switch>
+        <Route path="/" exact component={Main} />
+        <Route path="/calendar" component={CalendarPage} />
+      </Switch>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );

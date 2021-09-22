@@ -5,12 +5,14 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { addDays, format } from "date-fns";
 import styles from "./main.module.scss";
+import { useHistory } from "react-router";
 
 export default function Main() {
+  const history = useHistory();
   const [state, setState] = useState([
     {
-      startDate: new Date("2021", "10", "01"),
-      endDate: addDays(new Date("2021", "10", "01"), 1),
+      startDate: new Date("2021", "11", "01"),
+      endDate: addDays(new Date("2021", "11", "01"), 1),
       key: "selection",
     },
   ]);
@@ -45,7 +47,10 @@ export default function Main() {
 
     if (!res.ok) {
       alert("Deu ruim, fala com Saulo.");
+      return;
     }
+
+    history.push("/calendar", { name: name });
   }
 
   return (
@@ -85,8 +90,8 @@ export default function Main() {
             moveRangeOnFirstSelection={false}
             ranges={state}
             direction="horizontal"
-            minDate={new Date("2021", "10", "01")}
-            startDate={new Date("2021", "10", "01")}
+            minDate={new Date("2021", "11", "01")}
+            startDate={new Date("2021", "11", "01")}
             locale={ptBR}
           />
         </div>
