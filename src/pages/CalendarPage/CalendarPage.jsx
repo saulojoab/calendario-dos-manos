@@ -9,7 +9,7 @@ export default function CalendarPage(props) {
   const [data, setData] = useState([]);
 
   async function getData() {
-    const res = await fetch("http://localhost:8765/datas");
+    const res = await fetch("https://calendario-casas-api.herokuapp.com/datas");
 
     const dataObj = await res.json();
     const dataFormattedArray = [];

@@ -37,11 +37,14 @@ export default function Main() {
 
     setLoading(true);
 
-    const res = await fetch("http://localhost:8765/datas", {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: { "Content-Type": "application/json" },
-    });
+    const res = await fetch(
+      "https://calendario-casas-api.herokuapp.com/datas",
+      {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
 
     setLoading(false);
 
