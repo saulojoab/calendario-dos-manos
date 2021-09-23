@@ -25,6 +25,12 @@
   }
 }
 
+.main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .inputContainer {
   display: flex;
   flex-direction: column;
@@ -61,6 +67,7 @@
 
 .dateSelected {
   text-align: center;
+  margin-top: 10px;
 }
 
 .button {
@@ -96,11 +103,11 @@
 
 .calendarContainer {
   background-color: white;
-  padding: 30px;
+  padding: 20px;
+  margin-left: 15px;
   border-radius: 20px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
   transition: all 1s;
-  margin: 20px;
 
   &:hover {
     padding: 50px;

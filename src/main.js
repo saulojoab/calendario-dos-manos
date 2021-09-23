@@ -67,53 +67,57 @@ export default function Main() {
         Usaremos isso como base pra ver os dias disponíveis.
       </span>
 
-      <div className={styles.inputContainer}>
-        <span className={styles.label}>Insira seu nome abaixo:</span>
-        <input
-          onChange={handleNameChange}
-          className={styles.input}
-          type="text"
-          placeholder="Seu nome"
-        />
-      </div>
-
-      <br />
-
-      <div
-        className={name != "" ? styles.calendarDivShow : styles.calendarDivHide}
-      >
-        <span className={styles.label}>
-          Selecione um intervalo de datas abaixo:
-        </span>
-        <div className={styles.calendarContainer}>
-          <DateRangePicker
-            disabled={name === ""}
-            onChange={handleOnChange}
-            showSelectionPreview={false}
-            moveRangeOnFirstSelection={false}
-            ranges={state}
-            direction="horizontal"
-            minDate={new Date("2021", "11", "01")}
-            startDate={new Date("2021", "11", "01")}
-            locale={ptBR}
+      <div className={styles.main}>
+        <div className={styles.inputContainer}>
+          <span className={styles.label}>Insira seu nome abaixo:</span>
+          <input
+            onChange={handleNameChange}
+            className={styles.input}
+            type="text"
+            placeholder="Seu nome"
           />
         </div>
 
-        <span className={styles.dateSelected}>
-          Você selecionou de <b>{format(state[0].startDate, "dd/MM/yyyy")}</b>{" "}
-          até <b>{format(state[0].endDate, "dd/MM/yyyy")}</b>.
-        </span>
-        <span className={styles.dateSelected}>
-          <b>LEMBRE:</b> Essas datas não estarão mais disponíveis pra viagem.
-        </span>
+        <br />
 
-        <button
-          onClick={submitData}
-          disabled={loading}
-          className={styles.button}
+        <div
+          className={
+            name != "" ? styles.calendarDivShow : styles.calendarDivHide
+          }
         >
-          {loading ? "Carregando" : "Enviar"}
-        </button>
+          <span className={styles.label}>
+            Selecione um intervalo de datas abaixo:
+          </span>
+          <div className={styles.calendarContainer}>
+            <DateRangePicker
+              disabled={name === ""}
+              onChange={handleOnChange}
+              showSelectionPreview={false}
+              moveRangeOnFirstSelection={false}
+              ranges={state}
+              direction="horizontal"
+              minDate={new Date("2021", "11", "01")}
+              startDate={new Date("2021", "11", "01")}
+              locale={ptBR}
+            />
+          </div>
+
+          <span className={styles.dateSelected}>
+            Você selecionou de <b>{format(state[0].startDate, "dd/MM/yyyy")}</b>{" "}
+            até <b>{format(state[0].endDate, "dd/MM/yyyy")}</b>.
+          </span>
+          <span className={styles.dateSelected}>
+            <b>LEMBRE:</b> Essas datas não estarão mais disponíveis pra viagem.
+          </span>
+
+          <button
+            onClick={submitData}
+            disabled={loading}
+            className={styles.button}
+          >
+            {loading ? "Carregando" : "Enviar"}
+          </button>
+        </div>
       </div>
     </div>
   );
